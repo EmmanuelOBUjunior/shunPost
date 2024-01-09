@@ -16,6 +16,7 @@ const UserAuthForm:FC<UserAuthFormProps> = ({className, ...props}) => {
 
         try {
             await signIn('google')
+            
         } catch (error) {
             //Toast Notification
             toast({
