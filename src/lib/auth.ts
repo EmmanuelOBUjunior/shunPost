@@ -23,8 +23,8 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.id = token.id
         session.name = token.name
-        session.user.email = token.email
-        session.user.image = token.picture
+        session.email = token.email
+        session.image = token.picture
         session.username = token.username
       }
 
