@@ -11,7 +11,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({user}) => {
     <div>
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <UserAvatar/>
+                <UserAvatar user={user}/>
             </DropdownMenuTrigger>
         </DropdownMenu>
     </div>
