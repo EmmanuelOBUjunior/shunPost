@@ -1,9 +1,11 @@
+'use client'
 import { FC } from "react"
 import {User} from 'next-auth'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/DropdownMenu"
 import UserAvatar from "./UserAvatar"
 import Link from "next/link"
-import {signOut} from "next-auth'
+import {signOut} from 'next-auth/react'
+
 
 interface UserAccountNavProps{
     user: Pick<User, 'name' | 'email' | 'image'>
@@ -42,7 +44,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({user}) => {
             <DropdownMenuItem className="cursor-pointer" onSelect={(e)=>{
                 e.preventDefault()
                 signOut({
-                    
+                    callbackUrl: `${window.location.origin}/sign-in`
                 })
             }}>
                 Sign Out
