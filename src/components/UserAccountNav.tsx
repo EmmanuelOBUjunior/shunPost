@@ -1,5 +1,8 @@
+import { FC } from "react"
 
-const UserAccountNav = () => {
+interface UserAccountNavProps{}
+
+const UserAccountNav: FC<UserAccountNavProps> = ({}) => {
   return (
     <div>UserAccountNav</div>
   )
