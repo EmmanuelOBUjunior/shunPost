@@ -4,7 +4,7 @@ interface LoginInterceptProps {}
 
 const LoginIntercept:FC<LoginInterceptProps> = () => {
   return (
-    <div>page</div>
+    <div>Intercept</div>
   )
 }
 
