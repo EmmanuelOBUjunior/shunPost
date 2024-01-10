@@ -4,9 +4,9 @@ const nextConfig = {
         // domains: ['uploadthing.com', 'lh3.googleusercontent.com']
         remotePatterns:[{
             protocol: 'https',
-            hostname: 'lh3.googleusercontent.com',
+            hostname: '*.googleusercontent.com',
             port: '',
-            pathname:''
+            pathname:'**'
         }]
     },
 }
