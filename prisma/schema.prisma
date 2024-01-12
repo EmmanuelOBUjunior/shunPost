@@ -76,5 +76,11 @@ model Post{
 }
 
 model Comments{
-  
+  id String @id @default(cuid())
+  text String
+  createdAt DateTime @default(now())
+  author User
+  authorId String
+  post Post
+  postId String
 }
