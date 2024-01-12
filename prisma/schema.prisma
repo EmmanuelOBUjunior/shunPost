@@ -85,5 +85,13 @@ model Comments{
   postId String
 
   replyToId String?
-  replyTo Comment? @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction) 
+  replyTo Comment? @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies Comment[] @relation("ReplyTo")
+
+  votes CommentVote[]
+  commentId String?
+}
+
+model CommentVote{
+  
 }
