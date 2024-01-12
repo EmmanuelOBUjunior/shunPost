@@ -83,4 +83,7 @@ model Comments{
   authorId String
   post Post
   postId String
+
+  replyToId String?
+  replyTo Comment? @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction) 
 }
