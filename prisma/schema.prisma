@@ -43,16 +43,18 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  createdSubreddit    Subreddit[] @relation("CreatedBy")
 
   username String? @unique
 
-  image       String?
-  accounts    Account[]
-  sessions    Session[]
-  Post        Post[]
-  Comment     Comment[]
-  Vote        Vote[]
-  CommentVote CommentVote[]
+  image        String?
+  accounts     Account[]
+  sessions     Session[]
+  Post         Post[]
+  Comment      Comment[]
+  Vote         Vote[]
+  CommentVote  CommentVote[]
+  Subscription Subscription[]
 }
 
 model Subreddit {
@@ -63,12 +65,12 @@ model Subreddit {
   post      Post[]
 
   creatorId   String?
-  creator     User?
+  creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
   subscribers Subscription[]
 }
 
 model Subscription {
-  user        User @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
   userId      String
   subreddit   Subreddit @relation(fields: [subredditId], references: [id])
   subredditId String
