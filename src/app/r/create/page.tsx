@@ -1,7 +1,11 @@
-import React from 'react'
+'use client'
+import { useState } from "react"
 
-export const Create = () => {
+const Create = () => {
+    const [input, setInput] = useState<string>('')
   return (
-    <div>create</div>
+    <div>Create Community</div>
   )
 }
+
+export default Create
