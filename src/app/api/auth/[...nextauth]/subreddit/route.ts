@@ -28,6 +28,12 @@ export async function POST(req:Request){
             }
         })
 
+        await db.subscription.create({
+            data:{
+                userId: session.id,
+                subredditId: subreddit.id
+            }
+        })
     } catch (error) {
         
     }
