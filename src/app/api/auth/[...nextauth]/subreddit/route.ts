@@ -1,6 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { SubredditValidator } from "@/lib/validator/subreddit";
+import { z } from "zod";
 
 export async function POST(req:Request){
     try {
@@ -36,6 +37,10 @@ export async function POST(req:Request){
         })
         return new Response(subreddit.name)
     } catch (error) {
-        
+        if(error instanceof z.ZodError) {
+            return new Response(error.message, {status:422})
+        }
+
+        return new Response('Could not create subreddit', {status:500})
     }
 }
