@@ -1,12 +1,24 @@
 'use client'
 import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
+import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import axios from 'axios'
 
 const Create = () => {
     const [input, setInput] = useState<string>('')
     const router = useRouter()
+
+    const {} = useMutation({
+        mutationFn: async ()=>{
+            const payload= {
+
+            }
+            const {data} = await axios.post('/api/subreddits', payload)
+        }
+    })
+
   return (
     <div className="container flex items-center h-full max-3xl mx-auto">
     <div className="relative bg-white w-full h-fit p-4 rounded-lg space-y-6">
