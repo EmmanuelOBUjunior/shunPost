@@ -21,6 +21,13 @@ export async function POST(req:Request){
             return new Response('Subreddit already exists', {status:409})
         }
 
+        const subreddit = await db.subreddit.create({
+            data:{
+                name,
+                creatorId: session.user.id
+            }
+        })
+
     } catch (error) {
         
     }
