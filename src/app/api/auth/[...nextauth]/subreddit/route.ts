@@ -34,6 +34,7 @@ export async function POST(req:Request){
                 subredditId: subreddit.id
             }
         })
+        return new Response(subreddit.name)
     } catch (error) {
         
     }
