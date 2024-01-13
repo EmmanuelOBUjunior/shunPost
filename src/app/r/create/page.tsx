@@ -23,6 +23,7 @@ const Create = () => {
         },
         onError: (err)=>{
             if(err instanceof AxiosError){
+                if(err.response?.status === 409){
                 return toast({
                     title: "Subreddit already Exists",
                     description: "Please choose a different subreddit name.",
@@ -36,6 +37,14 @@ const Create = () => {
                     variant: 'destructive'
                 })
             }
+            if(err.response?.status === 422){
+                return toast({
+                    title: "Subreddit already Exists",
+                    description: "Please choose name between 3 and 21 characters.",
+                    variant: 'destructive'
+                })
+            }
+        }
         }
     })
 
