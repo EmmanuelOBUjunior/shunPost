@@ -1,9 +1,12 @@
 'use client'
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 const Create = () => {
     const [input, setInput] = useState<string>('')
+    const router = useRouter()
   return (
     <div className="container flex items-center h-full max-3xl mx-auto">
     <div className="relative bg-white w-full h-fit p-4 rounded-lg space-y-6">
@@ -20,9 +23,13 @@ const Create = () => {
                 <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400">
                     r/
                 </p>
-                <Input value={input} onChange={(e)=>{setInput(e.target.value)}}/>
+                <Input className="pl-6" value={input} onChange={(e)=>{setInput(e.target.value)}}/>
 
             </div>
+        </div>
+        <div className="flex justify-end gap-4">
+            <Button variant="subtle" onClick={()=>router.back()}> Cancel</Button>
+            <Button>Create Community</Button>
         </div>
     </div>
     </div>
