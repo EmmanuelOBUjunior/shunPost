@@ -62,9 +62,18 @@ model Subreddit {
   updatedAt DateTime @updatedAt
   post      Post[]
 
-  creatorId String?
-  creator User?
+  creatorId   String?
+  creator     User?
   subscribers Subscription[]
+}
+
+model Subscription {
+  user        User @relation(fields: [userId], references: [id])
+  userId      String
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
+  subredditId String
+
+  @@id([userId, subredditId])
 }
 
 model Post {
