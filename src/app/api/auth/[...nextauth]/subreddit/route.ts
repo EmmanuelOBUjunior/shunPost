@@ -24,7 +24,7 @@ export async function POST(req:Request){
         const subreddit = await db.subreddit.create({
             data:{
                 name,
-                creatorId: session.user.id
+                creatorId: session.user.id,
             }
         })
 
