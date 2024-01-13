@@ -9,7 +9,7 @@ export const useCustomToast = ()=>{
             description: "You need to be authorized to perform this action",
             variant: 'destructive',
             action:(
-                <Link className={buttonVariants({variant="outline"})}Login</Link>
+                <Link href='/sign-in' className={buttonVariants({variant: 'outline'})}>Login</Link>
             )
         })
     }
