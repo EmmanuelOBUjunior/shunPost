@@ -1,5 +1,6 @@
 'use client'
-const Providers = () => {
+
+const Providers = ({children}:{children:React.ReactNode}) => {
   return (
     <div>Providers</div>
   )
