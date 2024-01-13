@@ -4,8 +4,9 @@ import { Input } from "@/components/ui/Input"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { CreateSubredditPayload } from "@/lib/validator/subreddit"
+import { toast } from "@/hooks/use-toast"
 
 const Create = () => {
     const [input, setInput] = useState<string>('')
@@ -19,6 +20,22 @@ const Create = () => {
             const {data} = await axios.post('/api/subreddit', payload)
 
             return data as string
+        },
+        onError: (err)=>{
+            if(err instanceof AxiosError){
+                return toast({
+                    title: "Subreddit already Exists",
+                    description: "Please choose a different subreddit name.",
+                    variant: 'destructive'
+                })
+            }
+            if(err.response?.status === 422){
+                return toast({
+                    title: "Subreddit already Exists",
+                    description: "Please choose name between 3 and 21 characters.",
+                    variant: 'destructive'
+                })
+            }
         }
     })
 
