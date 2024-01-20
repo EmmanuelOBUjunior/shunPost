@@ -1,3 +1,4 @@
+import MiniCreatePost from "@/components/MiniCreatePost";
 import { INFINTE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
