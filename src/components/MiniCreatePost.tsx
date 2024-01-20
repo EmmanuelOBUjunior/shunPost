@@ -20,7 +20,7 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({session}) => {
                 user={
                     {
                         name: session?.name || null,
-                        image: session?.user.image || null
+                        image: session?..image || null
                     }
                 }
                 />
