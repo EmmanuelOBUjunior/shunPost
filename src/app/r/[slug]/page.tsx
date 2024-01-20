@@ -1,5 +1,7 @@
+import { INFINTE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
 
 interface PageProps{
   params:{
@@ -20,10 +22,13 @@ const page = async({params}:PageProps) => {
           vote: true,
           comment: true,
           subreddit: true,
-        }
+        },
+
+        take: INFINTE_SCROLLING_PAGINATION_RESULTS
       }
     }
   })
+  if(!subreddit) return notFound()
 
   return (
     <div>page</div>
