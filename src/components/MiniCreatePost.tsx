@@ -1,7 +1,14 @@
 'use client'
-const MiniCreatePost = () => {
+
+import { FC } from "react"
+
+interface MiniCreatePostProps{
+
+}
+
+const MiniCreatePost: FC<MiniCreatePostProps> = () => {
   return (
-    <div>MiniCreatePost</div>
+    <div></div>
   )
 }
 
