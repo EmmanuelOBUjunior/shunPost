@@ -6,7 +6,7 @@ interface MiniCreatePostProps{
 
 }
 
-const MiniCreatePost: FC<MiniCreatePostProps> = () => {
+const MiniCreatePost: FC<MiniCreatePostProps> = ({}) => {
   return (
     <div></div>
   )
