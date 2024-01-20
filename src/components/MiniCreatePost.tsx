@@ -14,7 +14,9 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({session}) => {
   return (
     <li className="overflow-hidden rounded-md bg-white shadow">
         <div className="h-full px-6 py-4 sm:flex sm:justify-between gap-6">
-
+            <div className="relative">
+                
+            </div>
         </div>
     </li>
   )
