@@ -1,10 +1,14 @@
-const Layout = ({
+import { getAuthSession } from "@/lib/auth";
+
+const Layout = async({
   children,
   params: { slug },
 }: {
   children: React.ReactNode
   params: { slug:string}
 }) => {
+
+    const session = await getAuthSession()
   return (
     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
       <div>
