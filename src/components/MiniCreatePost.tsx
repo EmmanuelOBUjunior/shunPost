@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
 import UserAvatar from "./UserAvatar";
 import { Input } from "./ui/Input";
+import { Button } from "./ui/Button";
 
 interface MiniCreatePostProps {
   session: Session;
@@ -25,6 +26,15 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
           />
           <span className="absolute bottom-0 right-0 rounded-full w-3 h-3 bg-green-500 outline outline-2 outline-white" />
         </div>
+        <Input
+            readOnly
+            onClick={()=> router.push(pathName + '/submit')}
+            placeholder="Create Post"
+        />
+        <Button
+            onClick={()=> router.push(pathName + '/submit')}
+            variant='ghost'
+        />
         <Input
             readOnly
             onClick={()=> router.push(pathName + '/submit')}
