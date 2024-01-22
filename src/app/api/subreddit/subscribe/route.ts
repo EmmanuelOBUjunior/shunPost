@@ -17,7 +17,14 @@ export async function POST(req: Request) {
         }
     })
 
-    if(subscriptionExists) return new Response('', {status: 400})
+    if(subscriptionExists) return new Response('You are already subscribed to this subreddit', {status: 400})
+
+    await db.subscription.create({
+        data:{
+            subredditId,
+            userId: session.id
+        }
+    })
     
   } catch (error) {}
 }
