@@ -1,52 +1,53 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import {format} from 'date-fns'
+import { format } from "date-fns";
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
 
-const Layout = async({
+const Layout = async ({
   children,
   params: { slug },
 }: {
-  children: React.ReactNode
-  params: { slug:string}
+  children: React.ReactNode;
+  params: { slug: string };
 }) => {
+  const session = await getAuthSession();
+  const subreddit = await db.subreddit.findFirst({
+    where: { name: slug },
+    include: {
+      post: {
+        include: {
+          author: true,
+          vote: true,
+        },
+      },
+    },
+  });
 
-    const session = await getAuthSession()
-    const subreddit = await db.subreddit.findFirst({
-        where:{name:slug},
-        include:{
-            post:{
-                include:{
-                    author:true,
-                    vote:true
-                }
-            }
-        }
-    })
+  const subscription = !session?.id
+    ? undefined
+    : await db.subscription.findFirst({
+        where: {
+          subreddit: {
+            name: slug,
+          },
+          user: {
+            id: session.id,
+          },
+        },
+      });
 
-    const subscription = !session?.id ? undefined : await db.subscription.findFirst({
-        where:{
-            subreddit:{
-                name: slug,
-            },
-            user:{
-                id: session.id
-            }
-        }
-    })
+  const isSubscribed = !!subscription;
 
-    const isSubscribed = !!subscription
+  if (!subreddit) return notFound();
 
-    if(!subreddit) return notFound()
-
-    const memberCount = await db.subscription.count({
-        where:{
-            subreddit:{
-                name:slug
-            }
-        }
-    })
+  const memberCount = await db.subscription.count({
+    where: {
+      subreddit: {
+        name: slug,
+      },
+    },
+  });
 
   return (
     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
@@ -60,29 +61,36 @@ const Layout = async({
               <p className="font-semibold py-3">About r/{subreddit.name}</p>
             </div>
 
-
             <dl className="divide-y divide-gray-200 text-sm px-6 py-4 leading-6 bg-white">
-                <div className="flex justify-between gap-x-4 py-3">
-                    <dt className="text-gray-500">Created</dt>
-                    <dd className="text-gray-700">
-                        <time dateTime={subreddit.createdAt.toDateString()}>{format(subreddit.createdAt, 'MMMM d, yyyy')}</time>
-                    </dd>
-                </div>
+              <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Created</dt>
+                <dd className="text-gray-700">
+                  <time dateTime={subreddit.createdAt.toDateString()}>
+                    {format(subreddit.createdAt, "MMMM d, yyyy")}
+                  </time>
+                </dd>
+              </div>
 
-                <div className="flex justify-between gap-x-4 py-3">
+              <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Members</dt>
-                    <dd className="text-gray-700">
-                       <div className="text-gray-900">{memberCount}</div>
-                    </dd>
+                <dd className="text-gray-700">
+                  <div className="text-gray-900">{memberCount}</div>
+                </dd>
+              </div>
+
+              {subreddit.creatorId === session?.id ? (
+                <div className="flex justify-between gap-x-4 py-3">
+                  <p>You created this community</p>
                 </div>
+              ) : null}
 
-                {subreddit.creatorId === session?.id ? (
-                    <div className="flex justify-between gap-x-4 py-3">
-                        <p>You created this community</p>
-                    </div>
-                ): null}
-
-                {subreddit.creatorId !== session?.id ?(<SubscribeLeaveToggle subredditId={subreddit.id} subredditName={subreddit.name}/>): null}
+              {subreddit.creatorId !== session?.id ? (
+                <SubscribeLeaveToggle
+                isSubscribed = {isSubscribed}
+                  subredditId={subreddit.id}
+                  subredditName={subreddit.name}
+                />
+              ) : null}
             </dl>
           </div>
         </div>
