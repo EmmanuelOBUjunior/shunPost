@@ -29,9 +29,9 @@ export async function POST(req: Request) {
     return new Response(subredditId)
   } catch (error) {
     if(error instanceof z.ZodError) {
-        return new Response(error.message, {status:422})
+        return new Response("Invalid request data passed", {status:422})
     }
 
-    return new Response('Could not subscribe to subreddit', {status:500})
+    return new Response('Could not subscribe to', {status:500})
 }
 }
