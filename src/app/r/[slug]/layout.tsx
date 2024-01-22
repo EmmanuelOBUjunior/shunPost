@@ -59,7 +59,7 @@ const Layout = async({
             </div>
 
 
-            <dl className="divide-y divide-gray-200 text-sm px-6 py-4 leading-6"></dl>
+            <dl className="divide-y divide-gray-200 text-sm px-6 py-4 leading-6 bg-white"></dl>
           </div>
         </div>
       </div>
