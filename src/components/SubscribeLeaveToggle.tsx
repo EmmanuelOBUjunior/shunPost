@@ -1,3 +1,4 @@
+'use client'
 import { FC, startTransition } from "react";
 import { Button } from "./ui/Button";
 import { useMutation } from "@tanstack/react-query";
@@ -5,14 +6,17 @@ import { SubscribeToSubredditPayload } from "@/lib/validator/subreddit";
 import axios, { AxiosError } from "axios";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface SubscribeLeaveToggleProps {
     subredditId: string;
+    subredditName: string;
 }
 
-const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({subredditId}) => {
+const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({subredditId,subredditName}) => {
   const isSubscribed = false;
   const {loginToast} = useCustomToast()
+  const router = useRouter()
 
   const {} = useMutation({
     mutationFn: async() => {
