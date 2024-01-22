@@ -67,6 +67,13 @@ const Layout = async({
                         <time dateTime={subreddit.createdAt.toDateString()}>{format(subreddit.createdAt, 'MMMM d, yyyy')}</time>
                     </dd>
                 </div>
+
+                <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Created</dt>
+                    <dd className="text-gray-700">
+                        <time dateTime={subreddit.createdAt.toDateString()}>{format(subreddit.createdAt, 'MMMM d, yyyy')}</time>
+                    </dd>
+                </div>
             </dl>
           </div>
         </div>
