@@ -11,7 +11,10 @@ export async function POST(req: Request) {
     const {subredditId} = SubredditSubscriptionValidator.parse(body)
     
     const subscriptionExists = await db.subscription.findFirst({
-        
+        where:{
+            subredditId,
+            userId: session.id
+        }
     })
     
   } catch (error) {}
