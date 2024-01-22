@@ -57,6 +57,9 @@ const Layout = async({
             <div className="px-6 py-4">
               <p className="font-semibold py-3">About r/</p>
             </div>
+
+
+            <dl className="divide-y divide-gray-200 text-sm px-6 py-4 leading-6"></dl>
           </div>
         </div>
       </div>
