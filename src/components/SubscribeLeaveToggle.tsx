@@ -17,13 +17,12 @@ interface SubscribeLeaveToggleProps {
 const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   subredditId,
   subredditName,
-  isSubscribed
+  isSubscribed,
 }) => {
-
   const { loginToast } = useCustomToast();
   const router = useRouter();
 
-  const {mutate: subscribe, isPending: isSubLoading} = useMutation({
+  const { mutate: subscribe, isPending: isSubLoading } = useMutation({
     mutationFn: async () => {
       const payload: SubscribeToSubredditPayload = { subredditId };
 
@@ -58,7 +57,15 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   return isSubscribed ? (
     <Button className="w-full mt-1 mb-4">Leave community</Button>
   ) : (
-    <Button className="w-full mt-1 mb-4">Join to post</Button>
+    <Button
+      isLoading={isSubLoading}
+      className="w-full mt-1 mb-4"
+      onClick={() => {
+        subscribe;
+      }}
+    >
+      Join to post
+    </Button>
   );
 };
 
