@@ -1,13 +1,11 @@
-import { FC } from "react"
+import { FC } from "react";
+import { Button } from "./ui/Button";
 
-interface SubscribeLeaveToggleProps{
+interface SubscribeLeaveToggleProps {}
 
-}
+const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({}) => {
+  const isSubscribed = false;
+  return isSubscribed ? <Button className="w-full mt-1 mb-4">Leave community</Button> : <Button className="w-full mt-1 mb-4">Join to post</Button>;
+};
 
-const SubscribeLeaveToggle:FC<SubscribeLeaveToggleProps> = ({}) => {
-  return (
-    <div>SubscribeLeaveToggle</div>
-  )
-}
-
-export default SubscribeLeaveToggle
+export default SubscribeLeaveToggle;
