@@ -16,6 +16,8 @@ export async function POST(req: Request) {
             userId: session.id
         }
     })
+
+    if(subscriptionExists) return new Response('', {status: 400})
     
   } catch (error) {}
 }
