@@ -1,4 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
 
 const Layout = async({
   children,
@@ -9,6 +11,41 @@ const Layout = async({
 }) => {
 
     const session = await getAuthSession()
+    const subreddit = await db.subreddit.findFirst({
+        where:{name:slug},
+        include:{
+            post:{
+                include:{
+                    author:true,
+                    vote:true
+                }
+            }
+        }
+    })
+
+    const subscription = !session?.id ? undefined : await db.subscription.findFirst({
+        where:{
+            subreddit:{
+                name: slug,
+            },
+            user:{
+                id: session.id
+            }
+        }
+    })
+
+    const isSubscribed = !!subscription
+
+    if(!subreddit) return notFound()
+
+    const memberCount = await db.subscription.count({
+        where:{
+            subreddit:{
+                name:slug
+            }
+        }
+    })
+
   return (
     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
       <div>
