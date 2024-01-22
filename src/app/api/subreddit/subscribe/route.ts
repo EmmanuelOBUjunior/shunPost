@@ -25,6 +25,6 @@ export async function POST(req: Request) {
             userId: session.id
         }
     })
-    
+    return new Response(subredditId)
   } catch (error) {}
 }
