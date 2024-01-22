@@ -1,6 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
+import {format} from 'date-fns'
 
 const Layout = async({
   children,
@@ -60,7 +61,12 @@ const Layout = async({
 
 
             <dl className="divide-y divide-gray-200 text-sm px-6 py-4 leading-6 bg-white">
-                
+                <div className="flex justify-between gap-x-4 py-3">
+                    <dt className="text-gray-500">Created</dt>
+                    <dd className="text-gray-700">
+                        <time dateTime={subreddit.createdAt.toDateString()}>{format(subreddit.createdAt, 'MMMM d, yyyy')}</time>
+                    </dd>
+                </div>
             </dl>
           </div>
         </div>
