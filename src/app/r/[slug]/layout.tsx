@@ -69,11 +69,15 @@ const Layout = async({
                 </div>
 
                 <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Created</dt>
+                <dt className="text-gray-500">Members</dt>
                     <dd className="text-gray-700">
-                        <time dateTime={subreddit.createdAt.toDateString()}>{format(subreddit.createdAt, 'MMMM d, yyyy')}</time>
+                       <div className="text-gray-900">{memberCount}</div>
                     </dd>
                 </div>
+
+                {subreddit.creatorId === session?.id ? (
+                    
+                ): null}
             </dl>
           </div>
         </div>
