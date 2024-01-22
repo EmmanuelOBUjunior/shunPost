@@ -1,6 +1,10 @@
+import { FC } from "react"
 
+interface SubscribeLeaveToggleProps{
+    
+}
 
-const SubscribeLeaveToggle = () => {
+const SubscribeLeaveToggle:FC<SubscribeLeaveToggleProps> = () => {
   return (
     <div>SubscribeLeaveToggle</div>
   )
