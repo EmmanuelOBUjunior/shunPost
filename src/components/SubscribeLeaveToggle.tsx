@@ -23,7 +23,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   const { loginToast } = useCustomToast();
   const router = useRouter();
 
-  const {} = useMutation({
+  const {mutate: subscibe, isPending: isSubLoading} = useMutation({
     mutationFn: async () => {
       const payload: SubscribeToSubredditPayload = { subredditId };
 
