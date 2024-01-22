@@ -80,6 +80,8 @@ const Layout = async({
                         <p>You created this community</p>
                     </div>
                 ): null}
+
+                {subreddit.creatorId !== session?.id ?(<SubscribeLeaveToggle/>): null}
             </dl>
           </div>
         </div>
